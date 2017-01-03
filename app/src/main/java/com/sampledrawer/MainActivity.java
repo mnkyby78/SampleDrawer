@@ -1,5 +1,6 @@
 package com.sampledrawer;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -88,5 +89,34 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private static int overlay_ui_flags;
+    private static int fullscreen_flags;
+
+    static {
+        fullscreen_flags = View.SYSTEM_UI_FLAG_LOW_PROFILE;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            fullscreen_flags |= View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
+                                View.SYSTEM_UI_FLAG_IMMERSIVE |
+                                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
+                                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
+                                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+            overlay_ui_flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
+                               View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
+                               View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
+        } else {
+            overlay_ui_flags = 0;
+        }
+    }
+
+    public void notFullScreen(View view) {
+        getWindow().getDecorView().setSystemUiVisibility(overlay_ui_flags);
+        findViewById(R.id.toolbar).setVisibility(View.VISIBLE);
+    }
+
+    public void fullScreen(View view) {
+        getWindow().getDecorView().setSystemUiVisibility(fullscreen_flags);
+        findViewById(R.id.toolbar).setVisibility(View.GONE);
     }
 }
