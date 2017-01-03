@@ -1,6 +1,6 @@
 # SampleDrawer
 Sample code for 23.2.0 Navigation view behavior
 
-Navigation view shows semi transparent padding when updated to support library 23.2.0. The behavior seems related to fitsSystemWindows attribute.
+This fork includes the ability to toggle full screen mode, which further breaks the NavigationView.  After toggling into full-screen mode, the NavigationView adds shaded padding to the top and bottom of the view.
 
-Stackoverflow question here http://stackoverflow.com/questions/35891651/navigationview-weird-spacing-for-support-library-23-2-0
+Original Stackoverflow question here http://stackoverflow.com/questions/35891651/navigationview-weird-spacing-for-support-library-23-2-0
